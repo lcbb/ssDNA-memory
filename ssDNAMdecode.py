@@ -1,11 +1,23 @@
-#!/usr/local/bin/python3.4
+# Digital files stored in DNA format
+#    Copyright (C) 2019  Tyson R. Shepherd, PhD
 #
-# C. Tyson R. Shepherd, PhD
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
-# Digital files stored in DNA format.
-# Input from web.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
 #
-# Output: Scaffold and staple sequences to order
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.#
+# 
+# Input: Name of file containing DNA sequence
+#
+# Output: Decrytped and decoded DNA to digital file
+#
 #
 import sys
 from struct import calcsize
