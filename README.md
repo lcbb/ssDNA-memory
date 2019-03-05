@@ -1,7 +1,7 @@
 # ssDNA-memory
-Single-stranded, kilobase DNA memory encoding scheme for archival in phage
+Single-stranded, kilobase-scale DNA memory encoding scheme for archival in phage
 
-Python3.4 with the Crypto and bitstring libraries will need to be installed to run the decryption algorithm.
+You will need Python3.4 with the crypto and bitstring libraries installed to run the decryption algorithm.
 
 Decode the file on the command line by typing:
 
