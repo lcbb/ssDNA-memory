@@ -12,7 +12,7 @@
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.#
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # 
 # Input: Name of file containing DNA sequence
 #
@@ -27,6 +27,7 @@ import dnaDecrypt
 if len(sys.argv) != 2:
     print("Usage: python3 ssDNAdecode.py <input_file>");
     sys.exit(1)
+#print("Content-Type: text/html\n\n")
 #
 # Oligos used to amplify, sequence or extract all messages.
 #
@@ -37,9 +38,16 @@ msgStop='GTACTAGTCGACGCGTGGCC';
 inPath = sys.argv[1]
 inFile = open(inPath)
 inSeq = ''.join(line.strip() for line in inFile.readlines())
-print("Input:");
+print("Input");
 print(str(inSeq));
-fileSeq=inSeq[:inSeq.find(msgStop)];
+if inSeq.find(msgStop)>=0:
+    fileSeqTmp=inSeq[:inSeq.find(msgStop)];
+else:
+    print("No EOF, check your sequence")
+if inSeq.find(masterStart)>=0:
+    fileSeq=fileSeqTmp[fileSeqTmp.find(masterStart)+len(masterStart):]
+else:
+    fileSeq=fileSeqTmp;
 fType=dnaDecrypt.seqTypeBarcode(fileSeq[0:20]);
 salt=fileSeq[20:36]
 pageNum=dnaDecrypt.DNA2int(fileSeq[36:40])
@@ -52,7 +60,7 @@ fileBytes=b''
 for i in fileBits:
     fileBytes=fileBytes+pack('B', i);
 fOut=dnaDecrypt.fileDecryptor(fileBytes, salt)
-print("\n\nOutput:");
+print("\nOutput:");
 if fType=='txt':
 	print(fOut.decode("utf-8").rstrip());
 if fType=='bmp' or fType=='jpg' or fType=='png':
