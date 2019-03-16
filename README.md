@@ -15,6 +15,7 @@ To encode a new file on the command line type:
 python3 ssDNAMcreate.py filename blockSize
 
 filename is the name of the file to encode in DNA
+
 blockSize is the size of the DNA to generate, either breaking into blocks of that size, or filling with slack space
 
 You will need pycrypto and biopython python packages installed and NCBI blast command line tools to run the encoding algorithm.
