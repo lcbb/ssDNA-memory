@@ -27,8 +27,6 @@ import dnaDecrypt
 if len(sys.argv) != 2:
     print("Usage: python3 ssDNAdecode.py <input_file>");
     sys.exit(1)
-#print("Content-Type: text/html\n\n")
-print("Output");
 #
 # Oligos used to amplify, sequence or extract all messages.
 #
@@ -39,7 +37,7 @@ msgStop='GTACTAGTCGACGCGTGGCC';
 inPath = sys.argv[1]
 inFile = open(inPath)
 inSeq = ''.join(line.strip() for line in inFile.readlines())
-print("Input");
+print("Input:");
 print(str(inSeq));
 fileSeq=inSeq[:inSeq.find(msgStop)];
 fType=dnaDecrypt.seqTypeBarcode(fileSeq[0:20]);
@@ -54,6 +52,7 @@ fileBytes=b''
 for i in fileBits:
     fileBytes=fileBytes+pack('B', i);
 fOut=dnaDecrypt.fileDecryptor(fileBytes, salt)
+print("\n\nOutput:");
 if fType=='txt':
 	print(fOut.decode("utf-8").rstrip());
 if fType=='bmp' or fType=='jpg' or fType=='png':
