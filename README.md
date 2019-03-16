@@ -1,7 +1,7 @@
 # ssDNA-memory
 Single-stranded, kilobase-scale DNA memory encoding scheme for archival in phage
 
-You will need Python3 with the pycrypto and bitstring libraries installed to run the decryption algorithm.
+You will need Python3 with the pycrypto (easy_install pycrypto) and bitstring libraries installed to run the decryption algorithm.
 
 Decode the file on the command line by typing:
 
@@ -18,4 +18,4 @@ filename is the name of the file to encode in DNA
 
 blockSize is the size of the DNA to generate, either breaking into blocks of that size, or filling with slack space
 
-You will need pycrypto and biopython python packages installed and NCBI blast command line tools to run the encoding algorithm.
+You will need pycrypto (easy_install pycrypto) and biopython (pip3 install biopython) python packages installed and NCBI blast command line tools to run the encoding algorithm.
