@@ -11,7 +11,6 @@ import os
 import string
 from struct import pack
 from bitstring import BitArray
-from lzma import compress
 from Crypto.Cipher import AES
 from Bio.Blast.Applications import NcbiblastnCommandline
 from Bio.Blast import NCBIXML
