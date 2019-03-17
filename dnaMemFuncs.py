@@ -101,7 +101,7 @@ def blastTester(seq):
 					elif sS>sE:
 						newSeq=newSeq[:sE]+newSubSeq(seq[sE:sS])+newSeq[sS:];
 				else:
-					print('Problem with blastSeq')
+					print('Problem with blastSeq, rerun the program')
 					os.remove("seq.fasta");
 					out=0
 					return(out)
