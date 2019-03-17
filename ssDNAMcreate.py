@@ -30,18 +30,25 @@ msgStop='GTACTAGTCGACGCGTGGCC';
 # Process form to python
 #
 inPath = sys.argv[1]
+fileEnd=inPath.rsplit('.', 1)[1]
 inFile = open(inPath)
 #inText = ''.join(line.rstrip() for line in inFile.readlines())
 #print("Input");
 #print(str(inText));
-
-fileType = "text"
+if fileEnd=='txt':
+	fileType='text'
+elif fileEnd=='mp3' or fileEnd=='wav' or fileEnd=='7z':
+	fileType=fileEnd;
+elif fileEnd=='jpg' or fileEnd=='tif' or fileEnd=='png' or fileEnd=='bmp':
+	fileType=fileEnd;
+else:
+	fileType='7z';
+print(fileType)
 msgStart = str(dnaMemFuncs.fileTypeBarcode(fileType));
 blockLen = int(sys.argv[2])
 ScafSeqs=[]
 gBlocks=[]
 eflag=1
-ivSeq=dnaMemFuncs.randDNA(16);
 cCount=0
 #
 # File conversion to scaffold seqs
@@ -56,12 +63,13 @@ if inFile:
 			break
 		fPage=dnaMemFuncs.NTintFill(cCount, 4)
 		csSeq=dnaMemFuncs.NTintFill(sys.getsizeof(oriFileCont), 8)
-		txtEnc=dnaMemFuncs.fileEncryptor(oriFileCont, ivSeq);
 		l=0
 		flag=1
 		dnaNewDat=0
 		while flag:
 			if dnaNewDat==0:
+				ivSeq=dnaMemFuncs.randDNA(16);
+				txtEnc=dnaMemFuncs.fileEncryptor(oriFileCont, ivSeq);
 				dnaNewDat=dnaMemFuncs.dnaEncoder(txtEnc);
 				l=l+1
 				dnaDat=masterStart+masterStop+msgStart+ivSeq+fPage+csSeq+dnaNewDat+msgStop
@@ -91,8 +99,12 @@ if inFile:
 		for i in ScafSeqs:
 			gBlocks.append(masterStart+i+masterStop);
 #
+		fOut=open('OutSeq.txt','w')
 		for i in range(len(gBlocks)):
 			print('Block sequences '+str(i+1)+":\n"+gBlocks[i]+"\n\n");
+			fOut.write(gBlocks[i])
+		fOut.close()
+
 #
 else:
 	print('Error: no file');
